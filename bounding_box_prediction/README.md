@@ -1,6 +1,6 @@
 # Pedestrian bounding box prediction library: <br/>
 ## Introduction:
-This is the unofficial code for the papers ["Pedestrian Intention Prediction: A Multi-task Perspective"](https://arxiv.org/abs/2010.10270), accepted and published in [hEART 2020](http://www.heart-web.org/) (the 9th Symposium of the European Association for Research in Transportation) and ["Pedestrian 3D Bounding Box Prediction"](https://arxiv.org/abs/2010.10270), accepted and published in [hEART 2022](http://www.heart-web.org/) (the 10th Symposium of the European Association for Research in Transportation). An implementation of the PIE dataset was added in order to improve the model. The changes that have been made to the model architecture, can pose a problem if you want to run the original code (go to the official git repository : https://github.com/vita-epfl/bounding-box-prediction).
+This is the unofficial code for the papers ["Pedestrian Intention Prediction: A Multi-task Perspective"](https://arxiv.org/abs/2010.10270), accepted and published in [hEART 2020](http://www.heart-web.org/) (the 9th Symposium of the European Association for Research in Transportation) and ["Pedestrian 3D Bounding Box Prediction"](https://arxiv.org/abs/2010.10270), accepted and published in [hEART 2022](http://www.heart-web.org/) (the 10th Symposium of the European Association for Research in Transportation). An implementation of the PIE dataset was added in order to improve the model. The changes that have been made to the model architecture, can pose a problem if you want to run the original code (go to the official git repository : https://github.com/vita-epfl/bounding-box-prediction). 
 
 ### _Absracts_:
 > __Pedestrian Intention Prediction: A Multi-task Perspective__<br /> 
@@ -22,14 +22,10 @@ This is the unofficial code for the papers ["Pedestrian Intention Prediction: A 
 ------------
     |─── datasets                            : Scripts for loading different datasets
             |─── jaad.py
-            |─── jta.py
-            |─── nuscenes.py
+            |─── pie.py
     |─── preprocess                          : Scripts for preprocessing
             |─── jadd_data.py
             |─── jaad_preprocessor.py
-            |─── jta_preprocessor.py
-            |─── nu_preprocessor.py
-            |─── nu_split.py 
             |─── pie_data.py 
             |─── pie_preprocessor.py     
     |─── visualization                       : Scripts for visualizing the results  
