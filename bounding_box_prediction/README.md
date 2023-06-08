@@ -1,6 +1,6 @@
 # Pedestrian bounding box prediction library: <br/>
 ## Introduction:
-This is the unofficial code for the papers ["Pedestrian Intention Prediction: A Multi-task Perspective"](https://arxiv.org/abs/2010.10270), accepted and published in [hEART 2020](http://www.heart-web.org/) (the 9th Symposium of the European Association for Research in Transportation) and ["Pedestrian 3D Bounding Box Prediction"](https://arxiv.org/abs/2010.10270), accepted and published in [hEART 2022](http://www.heart-web.org/) (the 10th Symposium of the European Association for Research in Transportation). An implementation of the PIE dataset was added in order to improve the model. The changes that have been made to the model architecture, can pose a problem if you want to run the original code (go to the official git repository : https://github.com/vita-epfl/bounding-box-prediction). 
+This is the unofficial code for the papers ["Pedestrian Intention Prediction: A Multi-task Perspective"](https://arxiv.org/abs/2010.10270), accepted and published in [hEART 2020](http://www.heart-web.org/) (the 9th Symposium of the European Association for Research in Transportation) and ["Pedestrian 3D Bounding Box Prediction"](https://arxiv.org/abs/2010.10270), accepted and published in [hEART 2022](http://www.heart-web.org/) (the 10th Symposium of the European Association for Research in Transportation). An implementation of the PIE dataset was added in order to improve the model. The changes that have been made to the model architecture, can pose a problem if you want to run the original code (go to the official git repository : https://github.com/vita-epfl/bounding-box-prediction).
 
 ### _Absracts_:
 > __Pedestrian Intention Prediction: A Multi-task Perspective__<br /> 
@@ -22,10 +22,14 @@ This is the unofficial code for the papers ["Pedestrian Intention Prediction: A 
 ------------
     |─── datasets                            : Scripts for loading different datasets
             |─── jaad.py
-            |─── pie.py
+            |─── jta.py
+            |─── nuscenes.py
     |─── preprocess                          : Scripts for preprocessing
             |─── jadd_data.py
             |─── jaad_preprocessor.py
+            |─── jta_preprocessor.py
+            |─── nu_preprocessor.py
+            |─── nu_split.py 
             |─── pie_data.py 
             |─── pie_preprocessor.py     
     |─── visualization                       : Scripts for visualizing the results  
@@ -85,13 +89,36 @@ Run the testing script
   python3 test.py --data_dir=/path/to/PIE/processed_annotations --dataset=pie --out_dir=/path/to/output --task='2D_bounding_box-intention'
   ```
 
-## Conclusion / Findings
+## Findings
 
-![100x150](Images/Pie_distributions/test.png)
-![100x150](Images/Pie_distributions/train.png)
-![100x150](Images/Pie_distributions/val.png)
+### Crossing distribution
+train | test | val
 
-![100x](Images/pie_jaad_charts/trpie_tsjaad.png)
+<img src="Images/Pie_distributions/test.png" alt="Alt Text" width="300" height="300">
+<img src="Images/Pie_distributions/train.png" alt="Alt Text" width="300" height="300">
+<img src="Images/Pie_distributions/val.png" alt="Alt Text" width="300" height="300">
+
+The crossing distribution is not the same as the one in the paper. This is due to the fact that the dataset was updated and the annotations were changed. The new annotations are more precise and the crossing distribution is more realistic.
+
+
+### Training on PIE and testing on JAAD
+
+<img src="Images/pie_jaad_charts/trpie_tsjaad_1.png" alt="Alt Text" width="400" height="300">
+<img src="Images/pie_jaad_charts/trpie_tsjaad_2.png" alt="Alt Text" width="400" height="300">
+
+The results were compared with the ones in the original paper. The results are similar but in general, if we train our model on PIE and test it on JAAD, the results are worse for the bounding box prediction but better for the intention accuracy.
+
+### New model - Backbone extension
+
+Four additional features were added to the backbone of the model: Action, Gesture, Look and Number of Lanes. To achieve this, another LSTM encodeer was added and the hidden states were fed to the existing concatenation layer. The results are shown below.
+<img src="Images/pie_pie/1.png" alt="Alt Text" width="400" height="300">
+<img src="Images/pie_pie/2.png" alt="Alt Text" width="400" height="300">
+
+The results show no significant improvement. The reason for this could be that the features are not very informative. The action, gesture and look features are not very precise since they are only binary variables. The number of lanes is the only one that could be useful but it is not very informative either.
+
+## Visualization
+
+<img src="Images/video_1_pred_bbox.gif" alt="Alt Text">
 
 ## Tested Environments
 ------------
