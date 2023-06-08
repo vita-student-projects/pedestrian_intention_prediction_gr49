@@ -85,7 +85,15 @@ Run the testing script
   python3 test.py --data_dir=/path/to/PIE/processed_annotations --dataset=pie --out_dir=/path/to/output --task='2D_bounding_box-intention'
   ```
 
-  ## Tested Environments
+## Conclusion / Findings
+
+![100x150](Images/Pie_distributions/test.png)
+![100x150](Images/Pie_distributions/train.png)
+![100x150](Images/Pie_distributions/val.png)
+
+![100x](Images/pie_jaad_charts/trpie_tsjaad.png)
+
+## Tested Environments
 ------------
   * Ubuntu 18.04, CUDA 10.1
   * Windows 10, CUDA 10.1
