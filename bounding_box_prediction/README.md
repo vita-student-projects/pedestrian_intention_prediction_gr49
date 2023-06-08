@@ -116,10 +116,6 @@ Four additional features were added to the backbone of the model: Action, Gestur
 
 The results show no significant improvement. The reason for this could be that the features are not very informative. The action, gesture and look features are not very precise since they are only binary variables. The number of lanes is the only one that could be useful but it is not very informative either.
 
-## Visualization
-
-<img src="Images/video_1_pred_bbox.gif" alt="Alt Text">
-
 ## Tested Environments
 ------------
   * Ubuntu 18.04, CUDA 10.1
