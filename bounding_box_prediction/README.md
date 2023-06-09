@@ -89,16 +89,24 @@ Run the testing script
   python3 test.py --data_dir=/path/to/PIE/processed_annotations --dataset=pie --out_dir=/path/to/output --task='2D_bounding_box-intention'
   ```
 
-## Findings
+## Contribution
+
+### Implementation of PIE
+We implemented the PIE dataset by modifying the `jaad_preprocesser.py` and `jaad.py`, called them `pie_preprocesser.py` and `pie.py` respectively.
 
 ### Crossing distribution
-train | test | val
+After extraction of the features from the datasets, we grouped them in a manner so that the ratio of crossing/non-crossing observations is similar across the train, val, and test sets.
 
-<img src="Images/Pie_distributions/test.png" alt="Alt Text" width="300" height="300">
+#### Train set  
 <img src="Images/Pie_distributions/train.png" alt="Alt Text" width="300" height="300">
+
+#### Validation set
 <img src="Images/Pie_distributions/val.png" alt="Alt Text" width="300" height="300">
 
-The crossing distribution is not the same as the one in the paper. This is due to the fact that the dataset was updated and the annotations were changed. The new annotations are more precise and the crossing distribution is more realistic.
+#### Test set
+<img src="Images/Pie_distributions/test.png" alt="Alt Text" width="300" height="300">
+
+The crossing distribution is not the same as the one in the paper. This is due to the fact that the dataset was updated and the annotations were changed. In the original paper of PIE, they considered three states to describe the intention of a pedestrian: 0 - Not crossing, 1 - Crossing, -1 - Irrelevant but not crossing (for example standing close to the road but waiting for a bus). The adaption we made was to convert all -1 instances to 0, as our model only predicts in a binary fashion.
 
 
 ### Training on PIE and testing on JAAD
